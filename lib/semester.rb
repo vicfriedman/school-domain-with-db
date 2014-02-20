@@ -8,5 +8,9 @@ class Semester
     ATTRIBUTES
   end
 
-  include Persistable
+  # Hacking included for mixin
+  # include Persistable
+  # Using a class method with extend for mixin
+  extend Persistable
+  acts_as_persistable
 end

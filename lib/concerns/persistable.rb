@@ -1,8 +1,16 @@
 module Persistable
-  def self.included(base)
-    base.send(:extend, Persistable::ClassMethods)
-    base.send(:include, Persistable::InstanceMethods)
-    base.send(:attr_accessor, *base.attributes.keys)
+  # Hacking included for mixin
+  # def self.included(base)
+  #   base.send(:extend, Persistable::ClassMethods)
+  #   base.send(:include, Persistable::InstanceMethods)
+  #   base.send(:attr_accessor, *base.attributes.keys)
+  # end
+
+  # Using extend with a class macro to mixin
+  def acts_as_persistable
+    extend Persistable::ClassMethods
+    include Persistable::InstanceMethods
+    attr_accessor *attributes.keys
   end
 
   module ClassMethods
